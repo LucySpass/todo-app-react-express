@@ -1,5 +1,7 @@
+import { StatusEnum } from "../enums/status";
+
 export interface TodoInterface {
-  id?: number;
+  id?: string;
   title: string;
-  status: string;
+  status: StatusEnum;
 }
