@@ -1,8 +1,9 @@
 import React from "react";
-import { TodoInterface } from "../interfaces/todo";
-import { StatusEnum } from "../enums/status";
+import { TodoInterface } from "../../interfaces/todo";
+import { StatusEnum } from "../../enums/status";
 
 import Checkbox from "@mui/material/Checkbox";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,13 +12,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
 
 interface TodoListProps {
   data: TodoInterface[];
   onStatusChange: (id: string) => void;
+  onDeletion: (id: string) => void;
 }
 
-function TodoList({ data, onStatusChange }: TodoListProps) {
+function TodoList({ data, onStatusChange, onDeletion }: TodoListProps) {
   return (
     data && (
       <TableContainer component={Paper}>
@@ -27,6 +30,7 @@ function TodoList({ data, onStatusChange }: TodoListProps) {
               <TableCell>No</TableCell>
               <TableCell>Title</TableCell>
               <TableCell align="right">Status</TableCell>
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -41,6 +45,11 @@ function TodoList({ data, onStatusChange }: TodoListProps) {
                     onChange={() => todo.id && onStatusChange(todo.id)}
                     checked={todo.status === StatusEnum.DONE}
                   />
+                </TableCell>
+                <TableCell>
+                  <IconButton onClick={() => todo.id && onDeletion(todo.id)}>
+                    <DeleteIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
