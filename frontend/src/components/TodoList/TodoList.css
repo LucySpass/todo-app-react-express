@@ -1,0 +1,9 @@
+.Todolist-container {
+  display: flex;
+  justify-content: center;
+  background: antiquewhite;
+  padding: 20px;
+  min-height: calc(100% - 103px);
+  position: absolute;
+  width: 100%;
+}
